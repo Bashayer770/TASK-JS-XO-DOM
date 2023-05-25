@@ -14,8 +14,9 @@ function winningAlert(winner) {
 
 // SAMPLE CODE: This code fills the 1st and 9th button with X and O initially
 // ❗️ Delete this code once you are done testing
-fillButton(1, "X");
-fillButton(9, "O");
+// fillButton(1, "X");
+// fillButton(9, "O");
+let turn = 1;
 
 /**
  *
@@ -28,52 +29,48 @@ function clickButton(index) {
   console.log(`Button number ${index} is clicked`);
   // Your main code here.
 
-  let turn = 0;
-  const p1 = "X";
-  const p2 = "O";
+  let currentPlayer = "X";
 
-  let currentPlayer = p1;
-  const button = document.getElementById(index).innerHTML;
-  if (button !== "") {
-    console.log("Button already filled.");
+  // currentPlayer = currentPlayer === 2 % "X" ? "O" : "X";
+  turn % 2 === 0 ? (currentPlayer = "O") : (currentPlayer = "X");
+  turn++;
+  console.log(turn);
+
+  //function game() {}
+
+  //function cellSelected(cell, index) {}
+  //function updateCell() {}
+  fillButton(index, currentPlayer);
+
+  function checkWinner(player) {
+    const winners = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+      [3, 5, 7],
+      [1, 5, 9],
+      [1, 4, 7],
+      [2, 5, 8],
+      [3, 6, 9],
+    ];
+    return winners.some((x) => {
+      const [a, b, c] = x;
+      const buttonA = document.getElementById(a).innerHTML;
+      const buttonB = document.getElementById(b).innerHTML;
+      const buttonC = document.getElementById(c).innerHTML;
+
+      return buttonA === player && buttonB === player && buttonC === player;
+    });
+  }
+  if (checkWinner(currentPlayer)) {
+    winningAlert(currentPlayer);
     return;
   }
 
-  if (turn === 9) {
-    alert("It's a draw!");
-    return;
-  }
-
-  currentPlayer = currentPlayer === p1 ? p2 : p1;
+  function restartGame() {}
+  /**
+   * (Optional) It's always a good idea to make a function for every single purpose.
+   */
+  // function checkWinner
+  // function restartGame
 }
-
-fillButton(index, currentPlayer);
-
-function checkWinner(player) {
-  const winners = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-    [3, 5, 7],
-    [1, 5, 9],
-    [1, 4, 7],
-    [2, 5, 8],
-    [3, 6, 9],
-  ];
-  return winners.some((x) => {
-    const [a, b, c] = x;
-    const buttonA = document.getElementById(a).innerHTML;
-    const buttonB = document.getElementById(b).innerHTML;
-    const buttonC = document.getElementById(c).innerHTML;
-
-    return buttonA === player && buttonB === player && buttonC === player;
-  });
-}
-
-function restartGame() {}
-
-/**
- * (Optional) It's always a good idea to make a function for every single purpose.
- */
-// function checkWinner
-// function restartGame

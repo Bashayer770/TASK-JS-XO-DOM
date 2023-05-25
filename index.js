@@ -67,7 +67,9 @@ function clickButton(index) {
     return;
   }
 
-  function restartGame() {}
+  function restartGame() {
+    //for()
+  }
   /**
    * (Optional) It's always a good idea to make a function for every single purpose.
    */

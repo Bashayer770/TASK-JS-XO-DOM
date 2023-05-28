@@ -9,6 +9,7 @@ function fillButton(index, text) {
 function winningAlert(winner) {
   if (confirm(`Horraaay, ${winner} wins!`)) {
     // The code here will be exectued if you press on OK button that will pop on the window
+    restartGame();
   }
 }
 
@@ -66,13 +67,12 @@ function clickButton(index) {
     winningAlert(currentPlayer);
     return;
   }
-
-  function restartGame() {
-    //for()
-  }
-  /**
-   * (Optional) It's always a good idea to make a function for every single purpose.
-   */
-  // function checkWinner
-  // function restartGame
 }
+function restartGame() {
+  for (i = 0; i <= 9; i++) fillButton(i, " ");
+}
+/**
+ * (Optional) It's always a good idea to make a function for every single purpose.
+ */
+// function checkWinner
+// function restartGame
